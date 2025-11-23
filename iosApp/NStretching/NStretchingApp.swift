@@ -20,6 +20,8 @@ struct NStretchingApp: App {
     
     init() {
         InitKt.doInitKoin()
+
+        // NotificationCenter.default.addObserver(self, selector: #selector(localeDidChange), name: NSLocale.currentLocaleDidChangeNotification, object: nil)
     }
 
     var body: some Scene {

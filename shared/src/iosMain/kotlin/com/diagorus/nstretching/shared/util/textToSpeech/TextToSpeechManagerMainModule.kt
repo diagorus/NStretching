@@ -14,7 +14,7 @@ actual class TextToSpeechManagerMainModule {
     actual fun provideTextToSpeechManager(scope: Scope): TextToSpeechManager {
         return TextToSpeechManager(
             // generated classes transform named annotations into StringQualifier; drawback of dynamic injection
-            scope.get(StringQualifier("com.diagorus.nstretching.shared.util.koin.CoroutinesModule.MainDispatcher")),
+            scope.get(StringQualifier("com.diagorus.nstretching.shared.util.koin.CoroutinesModule.DefaultDispatcher")),
             scope.get(),
         )
     }

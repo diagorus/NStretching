@@ -2,6 +2,7 @@ package com.diagorus.nstretching.shared.util.textToSpeech.auxiliaries
 
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
+import com.diagorus.nstretching.shared.util.textToSpeech.Utterance
 import org.koin.core.annotation.Single
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
@@ -19,6 +20,11 @@ class UtteranceManager : UtteranceProgressListener() {
         val utterance = Utterance(utteranceId, value, queueMode, continuation)
         utterances[utteranceId] = utterance
         return utterance
+    }
+
+    private fun generateUtteranceId(): String {
+        val utteranceId = nextUtteranceId++
+        return utteranceId.toString()
     }
 
     @Synchronized
@@ -43,10 +49,5 @@ class UtteranceManager : UtteranceProgressListener() {
     override fun onError(utteranceId: String) {
         val utterance = utterances.remove(utteranceId) as Utterance
         utterance.continuation.resumeWithException(Exception("UTTERANCE_ERROR"))
-    }
-
-    private fun generateUtteranceId(): String {
-        val utteranceId = nextUtteranceId++
-        return utteranceId.toString()
     }
 }

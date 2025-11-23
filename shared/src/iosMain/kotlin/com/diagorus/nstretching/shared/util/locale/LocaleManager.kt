@@ -3,10 +3,6 @@ package com.diagorus.nstretching.shared.util.locale
 import co.touchlab.kermit.Logger
 import com.diagorus.nstretching.shared.util.environment.customAppLocale
 import platform.Foundation.NSLocale
-import platform.Foundation.NSUserDefaults
-import platform.Foundation.autoupdatingCurrentLocale
-import platform.Foundation.currentLocale
-import platform.Foundation.languageCode
 import platform.Foundation.localizedStringForLanguageCode
 import platform.Foundation.preferredLanguages
 

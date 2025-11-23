@@ -6,7 +6,6 @@ import androidx.compose.runtime.key
 
 @Composable
 fun AppEnvironment(content: @Composable () -> Unit) {
-
     CompositionLocalProvider(
         LocalAppLocale provides customAppLocale,
     ) {
