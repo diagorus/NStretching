@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization") version "2.0.21"
     alias(libs.plugins.ksp)
+    id("dev.mokkery") version "3.0.0"
 }
 
 kotlin {
@@ -57,6 +58,9 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
+                implementation(libs.kotlin.test.annotations.common)
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.koinTest)
             }
         }
 
@@ -83,7 +87,7 @@ kotlin {
                 implementation(libs.androidx.media3.common.ktx)
                 implementation(libs.androidx.media3.datasource)
 
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+                implementation(libs.kotlinx.serialization.json)
             }
         }
 

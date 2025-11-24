@@ -2,7 +2,6 @@ package com.diagorus.nstretching.shared.util.textToSpeech.auxiliaries
 
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
-import com.diagorus.nstretching.shared.util.textToSpeech.Utterance
 import org.koin.core.annotation.Single
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
