@@ -1,9 +1,8 @@
-package com.diagorus.nstretching.shared.util.textToSpeech.auxiliaries
+package com.diagorus.nstretching.shared.util.textToSpeech
 
 import android.content.Context
 import android.speech.tts.TextToSpeech
 import co.touchlab.kermit.Logger
-import com.diagorus.nstretching.shared.util.koin.CoroutinesModule.ApplicationScope
 import com.diagorus.nstretching.shared.util.locale.LocaleManager
 import com.diagorus.nstretching.shared.util.preferences.PreferencesDataStoreManager
 import kotlinx.coroutines.CoroutineScope
@@ -11,15 +10,12 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.suspendCancellableCoroutine
-import org.koin.core.annotation.Single
 import java.util.Locale
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-@Single
 class TextToSpeechInitializationManager(
     private val applicationContext: Context,
-    @ApplicationScope
     private val applicationScope: CoroutineScope,
     private val localeManager: LocaleManager,
     private val preferencesDataStoreManager: PreferencesDataStoreManager,

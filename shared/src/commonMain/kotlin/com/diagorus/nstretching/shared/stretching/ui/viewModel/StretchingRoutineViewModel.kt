@@ -3,7 +3,7 @@ package com.diagorus.nstretching.shared.stretching.ui.viewModel
 import androidx.lifecycle.viewModelScope
 import com.diagorus.nstretching.shared.stretching.LocaleWithTextToSpeechAvailability
 import com.diagorus.nstretching.shared.stretching.data.routine.StretchingRoutineRepository
-import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.elements.StepAction
+import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.actions.StepAction
 import com.diagorus.nstretching.shared.util.audio.BeepToneManager
 import com.diagorus.nstretching.shared.util.base.BaseViewModel
 import com.diagorus.nstretching.shared.util.locale.LocaleManager
@@ -20,9 +20,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
 
-@KoinViewModel
 class StretchingRoutineViewModel(
     private val beepToneManager: BeepToneManager,
     private val textToSpeechManager: TextToSpeechManager,

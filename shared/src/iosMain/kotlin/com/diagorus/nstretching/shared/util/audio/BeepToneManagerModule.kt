@@ -1,14 +1,9 @@
 package com.diagorus.nstretching.shared.util.audio
 
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.Module
-import org.koin.core.annotation.Single
-import org.koin.core.scope.Scope
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
+import org.koin.dsl.module
 
-@Module
-@Configuration
-actual class BeepToneManagerModule {
-
-    @Single
-    actual fun provideBeepToneManager(scope: Scope) = BeepToneManager()
+actual val beepToneManagerModule = module {
+    singleOf(::BeepToneManagerImpl) bind BeepToneManager::class
 }

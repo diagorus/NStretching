@@ -1,13 +1,11 @@
-package com.diagorus.nstretching.shared.util.textToSpeech.auxiliaries
+package com.diagorus.nstretching.shared.util.textToSpeech
 
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
-import org.koin.core.annotation.Single
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-@Single
 class UtteranceManager : UtteranceProgressListener() {
 
     private val utterances = HashMap<String, Utterance>()

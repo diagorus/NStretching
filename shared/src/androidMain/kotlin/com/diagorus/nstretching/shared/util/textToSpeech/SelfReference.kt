@@ -1,4 +1,4 @@
-package com.diagorus.nstretching.shared.util.textToSpeech.auxiliaries
+package com.diagorus.nstretching.shared.util.textToSpeech
 
 class SelfReference<T> private constructor(initializer: SelfReference<T>.() -> T) {
 

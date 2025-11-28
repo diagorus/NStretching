@@ -1,14 +1,13 @@
 package com.diagorus.nstretching.shared.util.locale
 
-import co.touchlab.kermit.Logger
 import com.diagorus.nstretching.shared.util.environment.customAppLocale
 import platform.Foundation.NSLocale
 import platform.Foundation.localizedStringForLanguageCode
 import platform.Foundation.preferredLanguages
 
-actual class LocaleManager {
+class LocaleManagerImpl : LocaleManager {
 
-    actual val supportedLocales: List<LocaleWithName> by lazy {
+    override val supportedLocales: List<LocaleWithName> by lazy {
         SupportedLocale.entries
             .mapNotNull { supportedLocale ->
                 val displayName = supportedLocale.getDisplayName()
@@ -26,7 +25,7 @@ actual class LocaleManager {
         }
     }
 
-    actual fun getCurrentLocale(): LocaleWithName {
+    override fun getCurrentLocale(): LocaleWithName {
         val languageTag = NSLocale.preferredLanguages.firstOrNull()?.toString()
         val supportedLocale = SupportedLocale.fromLanguageTag(languageTag)
         val displayName = supportedLocale.getDisplayName()
@@ -37,7 +36,7 @@ actual class LocaleManager {
         }
     }
 
-    actual fun setLocale(locale: LocaleWithName) {
+    override fun setLocale(locale: LocaleWithName) {
         customAppLocale = locale.supportedLocale.tag
     }
 }

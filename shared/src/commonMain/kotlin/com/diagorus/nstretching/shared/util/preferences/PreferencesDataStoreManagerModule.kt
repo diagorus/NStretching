@@ -1,8 +1,5 @@
 package com.diagorus.nstretching.shared.util.preferences
 
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.Module
+import org.koin.core.module.Module
 
-@Module
-@Configuration
-expect class PreferencesDataStoreManagerModule()
+expect val preferencesDataStoreManagerModule: Module

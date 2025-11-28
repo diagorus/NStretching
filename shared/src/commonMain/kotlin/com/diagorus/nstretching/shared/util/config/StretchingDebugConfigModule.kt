@@ -1,14 +1,9 @@
 package com.diagorus.nstretching.shared.util.config
 
-import com.diagorus.nstretching.shared.util.koin.DEBUG_CONFIGURATION
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.Factory
-import org.koin.core.annotation.Module
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
+import org.koin.dsl.module
 
-@Module
-@Configuration(DEBUG_CONFIGURATION)
-class StretchingDebugConfigModule {
-
-    @Factory
-    fun provideStretchingDebugConfig(): StretchingConfig = StretchingDebugConfig()
+val stretchingDebugConfigModule = module {
+    singleOf(::StretchingDebugConfig) bind StretchingConfig::class
 }

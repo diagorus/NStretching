@@ -2,17 +2,16 @@ package com.diagorus.nstretching.shared.util.audio
 
 import android.media.AudioManager
 import android.media.ToneGenerator
-import com.diagorus.nstretching.shared.util.koin.CoroutinesModule.DefaultDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
-actual class BeepToneManager(
-    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
-) {
+class BeepToneManagerImpl(
+    private val defaultDispatcher: CoroutineDispatcher,
+) : BeepToneManager {
 
     private val toneGenerator = ToneGenerator(AudioManager.STREAM_MUSIC, TONE_VOLUME)
 
-    actual suspend fun playBeep() {
+    override suspend fun playBeep() {
         play(ToneGenerator.TONE_PROP_BEEP)
     }
 
@@ -22,7 +21,7 @@ actual class BeepToneManager(
         }
     }
 
-    actual suspend fun playDoubleBeep() {
+    override suspend fun playDoubleBeep() {
         play(ToneGenerator.TONE_PROP_BEEP2)
     }
 

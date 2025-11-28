@@ -81,6 +81,8 @@ android {
 dependencies {
     implementation(project(":shared"))
 
+    implementation(libs.kotlin.stdlib)
+
     implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")

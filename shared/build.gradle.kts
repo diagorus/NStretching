@@ -3,9 +3,7 @@ plugins {
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    kotlin("plugin.serialization") version "2.0.21"
-    alias(libs.plugins.ksp)
-    id("dev.mokkery") version "3.0.0"
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -32,10 +30,18 @@ kotlin {
         }
     }
 
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        binaries.all {
+            freeCompilerArgs += "-Xadd-light-debug=enable"
+        }
+    }
+
     sourceSets {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
+                implementation(libs.kotlin.stdlib.common)
+
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -44,7 +50,6 @@ kotlin {
 
 
                 implementation(libs.koin.core)
-                api(libs.koin.annotations)
                 implementation(libs.koin.compose.viewmodel.nav)
 
                 implementation(libs.androidx.datastore.preferences)
@@ -58,14 +63,16 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
-                implementation(libs.kotlin.test.annotations.common)
-                implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.koinTest)
+//                implementation(libs.kotlin.test.annotations.common)
+//                implementation(libs.kotlinx.coroutines.test)
+//                implementation(libs.koinTest)
             }
         }
 
         androidMain {
             dependencies {
+                implementation(libs.kotlin.stdlib)
+
                 implementation(libs.androidx.appcompat)
                 implementation(libs.material)
 
@@ -75,9 +82,6 @@ kotlin {
                 implementation(libs.androidx.navigation.compose)
 
                 implementation(libs.kotlinx.serialization.json)
-
-                implementation(libs.coil.compose)
-                implementation(libs.coil.network.okhttp)
 
                 implementation(libs.androidx.ui.tooling.preview)
                 implementation(libs.androidx.datastore.preferences)
@@ -104,28 +108,8 @@ kotlin {
             }
         }
     }
-
-    sourceSets.named("commonMain").configure {
-        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-    }
-}
-
-dependencies {
-    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
-    add("kspAndroid", libs.koin.ksp.compiler)
-    add("kspIosX64", libs.koin.ksp.compiler)
-    add("kspIosArm64", libs.koin.ksp.compiler)
-    add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
-}
-
-tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
-    dependsOn("kspCommonMainKotlinMetadata")
 }
 
 compose.resources {
     packageOfResClass = "com.diagorus.nstretching.shared.generated.resources"
-}
-
-ksp {
-    arg("KOIN_CONFIG_CHECK", "true")
 }

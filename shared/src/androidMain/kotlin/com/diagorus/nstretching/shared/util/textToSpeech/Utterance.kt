@@ -1,4 +1,4 @@
-package com.diagorus.nstretching.shared.util.textToSpeech.auxiliaries
+package com.diagorus.nstretching.shared.util.textToSpeech
 
 import kotlin.coroutines.Continuation
 

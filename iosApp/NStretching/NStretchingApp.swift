@@ -19,7 +19,7 @@ struct NStretchingApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     init() {
-        InitKt.doInitKoin()
+        KoinInitKt.doInitKoin()
 
         // NotificationCenter.default.addObserver(self, selector: #selector(localeDidChange), name: NSLocale.currentLocaleDidChangeNotification, object: nil)
     }

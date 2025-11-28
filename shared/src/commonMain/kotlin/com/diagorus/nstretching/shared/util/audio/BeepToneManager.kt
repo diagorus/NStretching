@@ -1,6 +1,6 @@
 package com.diagorus.nstretching.shared.util.audio
 
-expect class BeepToneManager {
+interface BeepToneManager {
     suspend fun playBeep()
     suspend fun playDoubleBeep()
 }

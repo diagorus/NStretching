@@ -7,49 +7,48 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.SupervisorJob
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.Factory
-import org.koin.core.annotation.Module
-import org.koin.core.annotation.Named
+import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
+import org.koin.dsl.module
 
-@Module
-@Configuration
-class CoroutinesModule {
-
-    @Factory
-    @MainDispatcher
-    fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
-
-    @Factory
-    @IoDispatcher
-    fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
-
-    @Factory
-    @DefaultDispatcher
-    fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
-
-    @Factory
-    fun provideCoroutineExceptionHandler() = CoroutineExceptionHandler { _, exception ->
-        Logger.e(exception) { "In injected CoroutineExceptionHandler" }
+val coroutinesModule = module {
+    factory(named<MainDispatcher>()) { Dispatchers.Main }
+    factory(named<DefaultDispatcher>()) { Dispatchers.Default }
+    factory(named<IoDispatcher>()) { Dispatchers.IO }
+    factory {
+        CoroutineExceptionHandler { _, exception ->
+            Logger.e(exception) { "In injected CoroutineExceptionHandler" }
+        }
     }
-
-    @Factory
-    @ApplicationScope
-    fun provideApplicationScope(
-        @DefaultDispatcher defaultDispatcher: CoroutineDispatcher,
-        coroutineExceptionHandler: CoroutineExceptionHandler
-    ) =
-        CoroutineScope(SupervisorJob() + defaultDispatcher + coroutineExceptionHandler)
-
-    @Named
-    annotation class IoDispatcher
-
-    @Named
-    annotation class MainDispatcher
-
-    @Named
-    annotation class DefaultDispatcher
-
-    @Named
-    annotation class ApplicationScope
+    factory(named<ApplicationScope>()) {
+        CoroutineScope(
+            SupervisorJob()
+                    + getDefaultDispatcher()
+                    + get<CoroutineExceptionHandler>()
+        )
+    }
 }
+
+fun Scope.getIoDispatcher(): CoroutineDispatcher {
+    return get(named<IoDispatcher>())
+}
+
+fun Scope.getMainDispatcher(): CoroutineDispatcher {
+    return get(named<MainDispatcher>())
+}
+
+fun Scope.getDefaultDispatcher(): CoroutineDispatcher {
+    return get(named<DefaultDispatcher>())
+}
+
+fun Scope.getApplicationScope(): CoroutineScope {
+    return get(named<ApplicationScope>())
+}
+
+class IoDispatcher
+
+class MainDispatcher
+
+class DefaultDispatcher
+
+class ApplicationScope

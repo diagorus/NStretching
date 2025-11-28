@@ -1,4 +1,4 @@
-package com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.elements
+package com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.actions
 
 import com.diagorus.nstretching.shared.util.locale.StringUiData
 import kotlin.time.DurationUnit

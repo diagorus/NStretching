@@ -5,14 +5,11 @@ import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.Rel
 import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.StretchStep
 import com.diagorus.nstretching.shared.util.config.StretchingConfig
 import kotlinx.coroutines.flow.flowOf
-import org.koin.core.annotation.Factory
-import org.koin.core.annotation.Provided
 import com.diagorus.nstretching.shared.generated.resources.Res
 import com.diagorus.nstretching.shared.generated.resources.transverse_twine
 
-@Factory
 class TransverseTwineExercise(
-    @Provided config: StretchingConfig,
+    config: StretchingConfig,
 ) : StretchingExercise(
     nameRes = Res.string.transverse_twine,
     steps = flowOf(

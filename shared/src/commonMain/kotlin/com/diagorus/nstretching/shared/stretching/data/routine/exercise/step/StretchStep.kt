@@ -1,6 +1,6 @@
 package com.diagorus.nstretching.shared.stretching.data.routine.exercise.step
 
-import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.elements.StepAction
+import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.actions.StepAction
 import com.diagorus.nstretching.shared.util.config.StretchingConfig
 import kotlinx.coroutines.flow.flowOf
 import com.diagorus.nstretching.shared.generated.resources.Res

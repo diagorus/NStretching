@@ -1,6 +1,6 @@
 package com.diagorus.nstretching.shared.util.config
 
-class StretchingReleaseConfig: StretchingConfig {
+class StretchingReleaseConfig : StretchingConfig {
 
     override val backTwistsPreparationStepDuration: Double = 15.0
     override val buttAndBackPreparationStepDuration: Double = 10.0

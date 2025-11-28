@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.diagorus.nstretching.shared.util.environment.customAppLocale
 import java.util.Locale
 
-actual class LocaleManager(
-    private val context: Context,
-) {
+class LocaleManagerImpl(
+    private val applicationContext: Context,
+) : LocaleManager {
 
-    actual val supportedLocales: List<LocaleWithName> by lazy {
+    override val supportedLocales: List<LocaleWithName> by lazy {
         SupportedLocale.entries
             .map {
                 languageTagToSupportedLocale(it.tag)
@@ -31,7 +31,7 @@ actual class LocaleManager(
         )
     }
 
-    actual fun getCurrentLocale(): LocaleWithName {
+    override fun getCurrentLocale(): LocaleWithName {
         val chosenLocale = AppCompatDelegate.getApplicationLocales()
             .toLanguageTags()
             .split(',')
@@ -43,11 +43,11 @@ actual class LocaleManager(
     }
 
     private fun getDefaultDeviceLocale(): LocaleWithName {
-        val defaultLocale = context.resources.configuration.locales[0]
+        val defaultLocale = applicationContext.resources.configuration.locales[0]
         return defaultLocale.toSupportedLocaleWithName()
     }
 
-    actual fun setLocale(locale: LocaleWithName) {
+    override fun setLocale(locale: LocaleWithName) {
         customAppLocale = locale.supportedLocale.tag
     }
 
