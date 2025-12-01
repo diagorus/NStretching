@@ -4,6 +4,7 @@ import com.diagorus.nstretching.shared.stretching.data.routine.stretchingRoutine
 import com.diagorus.nstretching.shared.stretching.ui.viewModel.stretchingRoutineViewModelModule
 import com.diagorus.nstretching.shared.util.audio.beepToneManagerModule
 import com.diagorus.nstretching.shared.util.config.stretchingDebugConfigModule
+import com.diagorus.nstretching.shared.util.config.stretchingReleaseConfigModule
 import com.diagorus.nstretching.shared.util.locale.localeManagerModule
 import com.diagorus.nstretching.shared.util.preferences.preferencesDataStoreManagerModule
 import com.diagorus.nstretching.shared.util.textToSpeech.textToSpeechManagerModule
@@ -14,8 +15,8 @@ fun initKoin(config: KoinAppDeclaration? = null) {
     startKoin {
         config?.invoke(this)
         modules(
-//            stretchingReleaseConfigModule,
-            stretchingDebugConfigModule,
+            stretchingReleaseConfigModule,
+//            stretchingDebugConfigModule,
             coroutinesModule,
             stretchingRoutineModule,
             stretchingRoutineViewModelModule,

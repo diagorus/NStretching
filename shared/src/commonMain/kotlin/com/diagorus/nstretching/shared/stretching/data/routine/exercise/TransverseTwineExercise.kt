@@ -13,7 +13,7 @@ class TransverseTwineExercise(
 ) : StretchingExercise(
     nameRes = Res.string.transverse_twine,
     steps = flowOf(
-        PreparationStep(Res.string.transverse_twine, config.transverseTwinePreparationStepDuration),
+        PreparationStep(Res.string.transverse_twine, config.defaultPreparationStepDuration),
         StretchStep(config),
         RelaxStep(config),
         StretchStep(config),

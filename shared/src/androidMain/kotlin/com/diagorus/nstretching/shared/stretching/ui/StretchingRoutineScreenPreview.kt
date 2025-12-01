@@ -4,6 +4,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.diagorus.nstretching.shared.stretching.LocaleWithTextToSpeechAvailability
+import com.diagorus.nstretching.shared.stretching.data.routine.state.RoutineState
+import com.diagorus.nstretching.shared.stretching.data.routine.state.RoutineStatus
 import com.diagorus.nstretching.shared.stretching.ui.viewModel.StretchingRoutineUiState
 import com.diagorus.nstretching.shared.util.locale.StringUiData
 import com.diagorus.nstretching.shared.util.locale.SupportedLocale
@@ -29,8 +31,11 @@ private fun StretchingRoutineScreenPreview0() {
                     localeWithName = LocaleWithName.default,
                     isTextToSpeechAvailable = true,
                 ),
-                exercise = StringUiData.Value("Hands"),
-                step = StringUiData.Value("Preparation"),
+                routineState = RoutineState(
+                    status = RoutineStatus.RUNNING,
+                    exerciseName = StringUiData.Value("Hands"),
+                    stepName = StringUiData.Value("Preparation"),
+                ),
             ),
             StretchingRoutineCallbacks(
                 onStartPauseClick = {},

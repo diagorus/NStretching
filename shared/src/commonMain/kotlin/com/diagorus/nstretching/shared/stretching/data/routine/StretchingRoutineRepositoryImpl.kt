@@ -18,6 +18,7 @@ class StretchingRoutineRepositoryImpl(
     private val transverseTwineExercise: TransverseTwineExercise,
     private val quadsExercise: QuadsExercise,
     private val buttAndBackExercise: ButtAndBackExercise,
+    private val bridgeExercise: ButtAndBackExercise,
     private val routineEndExercise: RoutineEndExercise,
 ): StretchingRoutineRepository {
 
@@ -29,6 +30,7 @@ class StretchingRoutineRepositoryImpl(
             transverseTwineExercise,
             quadsExercise,
             buttAndBackExercise,
+            bridgeExercise,
             routineEndExercise,
         )
     }

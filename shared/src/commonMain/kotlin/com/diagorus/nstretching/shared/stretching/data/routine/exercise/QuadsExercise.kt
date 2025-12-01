@@ -13,7 +13,7 @@ class QuadsExercise(
 ) : StretchingExercise(
     nameRes = Res.string.quads,
     steps = flowOf(
-        PreparationStep(Res.string.quads, config.quadsPreparationStepDuration),
+        PreparationStep(Res.string.quads, config.defaultPreparationStepDuration),
         StretchStep(config),
         ChangeStep(config),
         StretchStep(config),

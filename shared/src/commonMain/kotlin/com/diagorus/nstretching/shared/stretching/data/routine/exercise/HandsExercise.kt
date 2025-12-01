@@ -13,7 +13,7 @@ class HandsExercise(
 ) : StretchingExercise(
     nameRes = Res.string.hands,
     steps = flowOf(
-        PreparationStep(Res.string.hands, config.handsPreparationStepDuration),
+        PreparationStep(Res.string.hands, config.defaultPreparationStepDuration),
         StretchStep(config),
         RelaxStep(config),
         StretchStep(config),

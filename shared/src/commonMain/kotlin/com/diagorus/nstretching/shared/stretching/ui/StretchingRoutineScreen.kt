@@ -13,17 +13,12 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import co.touchlab.kermit.Logger
-import com.diagorus.nstretching.shared.util.environment.LocalAppLocale
-import com.diagorus.nstretching.shared.util.environment.customAppLocale
-import com.diagorus.nstretching.shared.stretching.ui.viewModel.StretchingRoutineState
+import com.diagorus.nstretching.shared.stretching.data.routine.state.RoutineStatus
 import com.diagorus.nstretching.shared.stretching.ui.viewModel.StretchingRoutineUiState
 import com.diagorus.nstretching.shared.stretching.ui.viewModel.StretchingRoutineViewModel
 import com.diagorus.nstretching.shared.util.locale.transformToStringCompose
@@ -96,8 +91,8 @@ fun StretchingRoutineScreen(
                 .fillMaxSize()
                 .padding(it),
         ) {
-            val state = uiState.state
-            val isNotIdle = state != StretchingRoutineState.IDLE
+            val status = uiState.routineState.status
+            val isNotIdle = status != RoutineStatus.IDLE
             Column(
                 modifier = Modifier.align(Alignment.Center),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -106,11 +101,11 @@ fun StretchingRoutineScreen(
                     OutlinedButton(
                         onClick = callbacks.onStartPauseClick,
                     ) {
-                        val startPauseTextRes = when (state) {
-                            StretchingRoutineState.RUNNING -> {
+                        val startPauseTextRes = when (status) {
+                            RoutineStatus.RUNNING -> {
                                 Res.string.pause
                             }
-                            StretchingRoutineState.PAUSED -> {
+                            RoutineStatus.PAUSED -> {
                                 Res.string.resume
                             }
                             else -> {
@@ -133,9 +128,9 @@ fun StretchingRoutineScreen(
                     Row(
                         modifier = Modifier.padding(top = 16.dp),
                     ) {
-                        Text(text = uiState.exercise.transformToStringCompose())
+                        Text(text = uiState.routineState.exerciseName.transformToStringCompose())
                         Text(" - ")
-                        Text(text = uiState.step.transformToStringCompose())
+                        Text(text = uiState.routineState.stepName.transformToStringCompose())
                     }
                 }
 
