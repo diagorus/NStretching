@@ -1,6 +1,7 @@
 package com.diagorus.nstretching.shared.stretching.data.routine
 
 import com.diagorus.nstretching.shared.stretching.data.routine.exercise.BackTwistsExercise
+import com.diagorus.nstretching.shared.stretching.data.routine.exercise.BridgeExercise
 import com.diagorus.nstretching.shared.stretching.data.routine.exercise.ButtAndBackExercise
 import com.diagorus.nstretching.shared.stretching.data.routine.exercise.HandsExercise
 import com.diagorus.nstretching.shared.stretching.data.routine.exercise.LongitudinalTwineExercise
@@ -18,7 +19,7 @@ class StretchingRoutineRepositoryImpl(
     private val transverseTwineExercise: TransverseTwineExercise,
     private val quadsExercise: QuadsExercise,
     private val buttAndBackExercise: ButtAndBackExercise,
-    private val bridgeExercise: ButtAndBackExercise,
+    private val bridgeExercise: BridgeExercise,
     private val routineEndExercise: RoutineEndExercise,
 ): StretchingRoutineRepository {
 

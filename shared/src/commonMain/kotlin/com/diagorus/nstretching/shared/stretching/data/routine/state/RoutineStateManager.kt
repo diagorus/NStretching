@@ -2,6 +2,7 @@ package com.diagorus.nstretching.shared.stretching.data.routine.state
 
 import co.touchlab.kermit.Logger
 import com.diagorus.nstretching.shared.stretching.data.routine.StretchingRoutineRepository
+import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.StretchStep
 import com.diagorus.nstretching.shared.stretching.data.routine.exercise.step.actions.StepAction
 import com.diagorus.nstretching.shared.util.NO_VALUE
 import com.diagorus.nstretching.shared.util.audio.BeepToneManager
@@ -75,7 +76,9 @@ class RoutineStateManager(
                 currentStepIndex != NO_VALUE && currentStepIndex > index
             }
             .onEach { (index, step) ->
-                currentStepIndex = index - currentExerciseIndex
+                if (step is StretchStep) {
+                    currentStepIndex = index - currentExerciseIndex
+                }
 
                 Logger.e { ">>> onEach step:${StringUiData.Resource(resource = step.nameRes).transformToString()} currentExerciseIndex:${currentExerciseIndex} currentStepIndex:${currentStepIndex}" }
 
