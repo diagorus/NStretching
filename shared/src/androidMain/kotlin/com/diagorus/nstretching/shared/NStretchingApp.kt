@@ -18,8 +18,8 @@ import org.koin.android.ext.koin.androidLogger
 
 class NStretchingApp : Application() {
 
-//    private val textToSpeechManager by inject<TextToSpeechManagerImpl>()
-//    private val localeManager by inject<LocaleManagerImpl>()
+    private val textToSpeechManager by inject<TextToSpeechManagerImpl>()
+    private val localeManager by inject<LocaleManagerImpl>()
 
     override fun onCreate() {
         super.onCreate()
@@ -32,8 +32,8 @@ class NStretchingApp : Application() {
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent) {
                 if (intent.action == Intent.ACTION_LOCALE_CHANGED) {
-//                    textToSpeechManager.onLanguageChanged()
-//                    localeManager.onLocaleChanged()
+                    textToSpeechManager.onLanguageChanged()
+                    localeManager.onLocaleChanged()
                 }
             }
         }
